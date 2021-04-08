@@ -20,3 +20,7 @@ Test locally:
 Deploy:
 
     kubectl apply -f manifest.yaml
+
+Check it out:
+
+    open https://pyflask.boeing.internal.cloudgenius.app
