@@ -4,7 +4,7 @@ Dockerfile and manifests for a python Flask App using Gunicorn.
 
 Use:
 
-    docker build -t cloudgenius/pyflask .
+    docker build -t cloudgenius/pyflask -f Dockerfile.alpine .
 
     docker login
 
