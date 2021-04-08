@@ -4,8 +4,19 @@ Dockerfile and manifests for a python Flask App using Gunicorn.
 
 Use:
 
-  docker build -t cloudgenius/pyflask .
+    docker build -t cloudgenius/pyflask .
 
-  docker run -d -p 5000:5000 cloudgenius/pyflask
+    docker login
 
-  open http://localhost:5000
+    docker push cloudgenius/pyflask
+
+    docker run -d -p 5000:5000 cloudgenius/pyflask
+
+Test locally:
+
+    open http://localhost:5000
+
+
+Deploy:
+
+    kubectl apply -f manifest.yaml
