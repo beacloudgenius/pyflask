@@ -1,0 +1,54 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pyflask-deploy
+spec:
+  selector:
+    matchLabels:
+      app: pyflask
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: pyflask
+    spec:
+      containers:
+      - name: pyflask
+        image: cloudgenius/pyflask:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pyflask-service
+spec:
+  selector:
+    app: pyflask
+  ports:
+    - name: http
+      port: 80
+      targetPort: 5000
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pyflask-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  rules:
+    - host: pyflask.boeing.internal.cloudgenius.app
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: pyflask-service
+              servicePort: 80
+  tls:
+    - hosts:
+        - "pyflask.boeing.internal.cloudgenius.app"
+      secretName: pyflask.boeing.internal.cloudgenius.app

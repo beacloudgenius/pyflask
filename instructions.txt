@@ -1,0 +1,14 @@
+You are given app.py
+
+You need to do the following:
+
+1. Write a Dockerfile to package this flask Application as a container.
+2. Write the necessary kubernetes manifests to deploy this container as a web application
+3. Incorporate a real URL this application would respond on.
+
+Notes:
+
+* Treat this as introducing a new application into an already existing Kubernetes cluster that already has a number of other web applications already deployed. The Kubernetes files should be designed with production quality, high availability, and scalability in mind.
+
+* Do not affix the Application Pod to a static port on the host. In addition, use the most efficient cloud costs management approach when creating your manifests in case the customer decides to create 20 additional similar applications.
+ 
